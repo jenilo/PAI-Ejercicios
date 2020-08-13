@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>Ejercicio 8</title>
+	</head>
+	<body>
+		<div>
+			<canvas id="canvas" width="300" height="350"></canvas>
+			<img id="scream" src="https://upload.wikimedia.org/wikipedia/commons/9/9d/The_Scream_by_Edvard_Munch%2C_1893_-_Nasjonalgalleriet.png" style="visibility: hidden" width="200" height="250" >
+		</div>
+		<script type="text/javascript">
+			window.onload = function() {
+				var canvas = document.getElementById("canvas");
+				if(canvas.getContext){
+					var ctx = canvas.getContext('2d');
+					
+					var img = document.getElementById("scream");
+					console.log(img);
+					ctx.drawImage(img, 50, 50,200,250);
+					//ctx.drawImage(img, 10, 10,200,250);
+					
+				}
+		}
+
+		</script>
+	</body>
+</html>
