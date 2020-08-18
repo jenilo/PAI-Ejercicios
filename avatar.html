@@ -1,0 +1,163 @@
+<html>
+	<head>
+		<title>Avatar</title>
+	</head>
+	<body>
+		<div>
+			<canvas id="canvas" width="500" height="500"></canvas>
+			<img id="flor" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6826df74-c3d4-4589-a52a-ba3834aa747d/d5shfv9-5d10a497-7d19-4186-9a1e-20e7d7c44623.png/v1/fill/w_256,h_256,strp/flor_png_negra_by_marthitaarroyo_d5shfv9-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3siaGVpZ2h0IjoiPD0yNTYiLCJwYXRoIjoiXC9mXC82ODI2ZGY3NC1jM2Q0LTQ1ODktYTUyYS1iYTM4MzRhYTc0N2RcL2Q1c2hmdjktNWQxMGE0OTctN2QxOS00MTg2LTlhMWUtMjBlN2Q3YzQ0NjIzLnBuZyIsIndpZHRoIjoiPD0yNTYifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ._Dm_SdtpvwyxDyzUqCUrktfOErMiAgwWwhlzmTOtoIo" style="visibility: hidden" width="200" height="250" >
+		</div>
+		<script type="text/javascript">
+			window.onload = function() {
+				var canvas = document.getElementById("canvas");
+				if(canvas.getContext){
+					var ctx = canvas.getContext('2d');
+
+					//cabello
+					ctx.beginPath();
+					ctx.fillStyle = "black";
+					ctx.arc(240,65,30,0, 2 * Math.PI);
+					ctx.fill();
+					ctx.fillRect(210,65,60,50);
+
+					//cuello
+					ctx.beginPath();
+					ctx.fillStyle = "#ceb3a1";
+					ctx.fillRect(230,100,20,20);
+					//cara
+					ctx.moveTo(250,50);
+					ctx.lineTo(265,80);
+					ctx.lineTo(260,100);
+					ctx.lineTo(245,110);
+					ctx.lineTo(235,110);
+					ctx.fillStyle = "#EECBB2";
+					ctx.lineTo(220,100);
+					ctx.lineTo(215,80);
+					ctx.fill();
+
+					//rostro
+					//ojo izq
+					ctx.beginPath();
+					ctx.fillStyle = "#fff";
+					ctx.arc(230, 80, 5, 3.2, 2* Math.PI);
+					ctx.fill();
+					ctx.beginPath();
+					ctx.fillStyle = "#fff";
+					ctx.arc(230, 79, 5, 3.2, 2* Math.PI);
+					ctx.stroke();
+					ctx.beginPath();
+					ctx.fillStyle = "#000";
+					ctx.arc(230, 78, 2, 0, 2* Math.PI);
+					ctx.fill();
+					//ojo der
+					ctx.beginPath();
+					ctx.fillStyle = "#fff";
+					ctx.arc(250, 80, 5, 3.2, 2* Math.PI);
+					ctx.fill();
+					ctx.beginPath();
+					ctx.fillStyle = "#fff";
+					ctx.arc(250, 79, 5, 3.2, 2* Math.PI);
+					ctx.stroke();
+					ctx.beginPath();
+					ctx.fillStyle = "#000";
+					ctx.arc(250, 78, 2, 0, 2* Math.PI);
+					ctx.fill();
+					//boca
+					ctx.beginPath();
+					ctx.arc(240, 95, 5, 0.5, 0.8* Math.PI);
+					ctx.stroke();
+
+					//cuerpo
+					//pantalones
+					ctx.beginPath();
+					//lado der
+					ctx.moveTo(215,255);
+					ctx.lineTo(212,280);
+					ctx.lineTo(215,325);
+					ctx.fill();
+					//pantalones
+					ctx.fillRect(215,255,65,40);
+					ctx.fillRect(215,295,30,40);
+					ctx.fillRect(250,295,30,40);
+					//lado izq
+					ctx.beginPath();
+					ctx.moveTo(280,255);
+					ctx.lineTo(283,280);
+					ctx.lineTo(280,325);
+					ctx.fill();
+
+					//piernas
+					ctx.fillStyle = "#EECBB2";
+					ctx.fillRect(220,335,20,100+15);
+					ctx.fillRect(255,335,20,100+15);
+					//pies
+					ctx.beginPath();
+					ctx.fillStyle = "#000";
+					ctx.arc(220,435+15,10,0, 2 * Math.PI);
+					ctx.fill();
+					ctx.fillRect(220,425+15,20,20);
+					ctx.beginPath();
+					ctx.arc(275,435+15,10,0, 2 * Math.PI);
+					ctx.fill();
+					ctx.fillRect(255,425+15,20,20);
+
+
+					//tronco y brazos
+					ctx.beginPath();
+					ctx.fillStyle = "#407FA6";
+					//brazo izq
+					ctx.moveTo(230,120);
+					ctx.lineTo(200,130);
+					ctx.lineTo(195,135);
+					ctx.lineTo(190,190);
+					ctx.lineTo(195,255);
+					ctx.lineTo(215,258);
+					ctx.lineTo(210,190);
+					ctx.lineTo(215,150);
+					ctx.lineTo(217,151);
+					//torso
+					ctx.lineTo(220,175);
+					ctx.lineTo(222,195);
+					ctx.lineTo(215,255);
+					ctx.lineTo(280,255);
+					ctx.lineTo(267,195);
+					ctx.lineTo(267,175);
+					//brazo derecho
+					ctx.lineTo(268,151);
+					ctx.lineTo(270,150);
+					ctx.lineTo(275,190);
+					ctx.lineTo(280,258);
+					ctx.lineTo(300,255);
+					ctx.lineTo(295,190);
+					ctx.lineTo(290,135);
+					ctx.lineTo(285,130);
+					ctx.lineTo(250,120);
+					ctx.fill();
+					//manos
+					ctx.beginPath();
+					ctx.fillStyle = "#EECBB2";
+					ctx.arc(205,255,10,0,2 * Math.PI);
+					ctx.fill();
+					ctx.beginPath();
+					ctx.fillStyle = "#EECBB2";
+					ctx.arc(290,255,10,0,2 * Math.PI);
+					ctx.fill();
+
+					//img
+					var img = document.getElementById("flor");
+					console.log(img);
+					ctx.drawImage(img, 220, 150,45,40);
+
+					//texto
+					var grd = ctx.createRadialGradient(75,50,5,90,60,80);
+					grd.addColorStop(0,"blue");
+					grd.addColorStop(1,"white");
+					ctx.fillStyle = grd;
+					ctx.fillRect(10,10,150,80);
+
+				}
+		}
+
+		</script>
+	</body>
+</html>
