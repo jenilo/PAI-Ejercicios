@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<title>Dibujo</title>
+	</head>
+	<body style="background-color: gray;">
+		<div style="width: 1000px; margin: 0 auto;">
+			<canvas id="canvas" width="1000" height="500" style="background-color: white;"></canvas>
+		</div>
+		<script type="text/javascript">
+			var canvas = document.getElementById("canvas");
+
+			var presionado = false;
+
+			if(canvas.getContext){
+				var ctx = canvas.getContext('2d');
+
+				canvas.addEventListener("click",function(evt){
+						ctx.beginPath();
+						ctx.arc(evt.layerX,evt.layerY,10,0,2*Math.PI);
+						ctx.fill();
+					
+				});
+
+				canvas.addEventListener("mousemove",function(evt){
+					if(presionado){
+						ctx.beginPath();
+						ctx.arc(evt.layerX,evt.layerY,10,0,2*Math.PI);
+						ctx.fill();
+					}
+					
+				});
+
+				canvas.addEventListener("mouseover",function(){
+					ctx.fillStyle = getRandomColor();
+				});
+
+				canvas.addEventListener("mousedown",function(evt){
+					presionado = true;
+				});
+
+				canvas.addEventListener("mouseup",function(evt){
+					presionado = false;
+				});
+
+			}
+			function getRandomColor() {
+				var letters = '0123456789ABCDEF';
+				var color = '#';
+				for (var i = 0; i < 6; i++) {
+					color += letters[Math.floor(Math.random() * 16)];
+				}
+				return color;
+			}
+
+		</script>
+	</body>
+</html>
