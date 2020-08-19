@@ -1,0 +1,106 @@
+<html>
+	<head>
+		<title>Casita</title>
+	</head>
+	<body style="background-color: gray;">
+		<div style="width: 1000px; margin: 0 auto;">
+			<canvas id="canvas" width="1000" height="500" style="background-color: white;"></canvas>
+		</div>
+		<script type="text/javascript">
+			window.onload = function() {
+				var canvas = document.getElementById("canvas");
+				if(canvas.getContext){
+					var ctx = canvas.getContext('2d');
+
+					//piso
+					ctx.fillStyle = "#035b03";
+					ctx.fillRect(0,400,1000,100);
+
+					//sol
+					var grd = ctx.createRadialGradient(50,50,5,60,60,50);
+					grd.addColorStop(0,"yellow");
+					grd.addColorStop(1,"white");
+					ctx.fillStyle = grd;
+					ctx.fillRect(10,10,100,100);
+
+					//Arbol
+					var x = 180, y = 80;
+					for (var i = 0; i <= 4; i++){
+						for(var j = 0;j <= i; j++){
+							ctx.beginPath();
+							ctx.fillStyle = "green";
+							ctx.arc(x+(45*j)-(22*i),y,30,0,2 * Math.PI);
+							ctx.fill();
+							var num = Math.floor((Math.random() * 2) + 1);
+							if(num==1){
+								ctx.beginPath();
+								ctx.fillStyle = "red";
+								ctx.arc(x+(45*j)-(22*i),y,10,0,2 * Math.PI);
+								ctx.fill();
+							}
+						}
+						y += 45;
+					}
+					//tronco
+					ctx.beginPath();
+					ctx.fillStyle = "#9b6420";
+					ctx.fillRect(160,y-25,50,150);
+
+					//casa
+					//base
+					ctx.beginPath();
+					ctx.fillStyle = "#B08660";
+					ctx.fillRect(400,200,500,250);
+					//triangulo superior
+					ctx.moveTo(400,200);
+					ctx.lineTo(650,110);
+					ctx.lineTo(900,200);
+					ctx.fill();
+
+					//techo
+					ctx.beginPath();
+					ctx.fillStyle = "#4F3C33";
+					ctx.moveTo(395,205);
+					ctx.lineTo(360,205);
+					ctx.lineTo(649,100);
+					ctx.lineTo(651,100);
+					//chimenea
+					ctx.lineTo(770,140);
+					ctx.lineTo(770,100);
+					ctx.lineTo(820,100);
+					ctx.lineTo(820,160);
+					//techo
+					ctx.lineTo(940,205);
+					ctx.lineTo(905,205);
+					ctx.lineTo(650,120);
+					ctx.fill();
+
+					//puerta
+					ctx.fillRect(600,320,100,130);
+					//perilla
+					ctx.beginPath();
+					ctx.fillStyle = "yellow";
+					ctx.arc(690,380,5,0,2*Math.PI);
+					ctx.fill();
+					//ventana circular
+					ctx.beginPath();
+					ctx.arc(650,190,40,0,2*Math.PI);
+					ctx.lineWidth = 5;
+					ctx.stroke();
+					ctx.fillStyle = "#85BBFB";
+					ctx.beginPath();
+					ctx.arc(650,190,40,0,2*Math.PI);
+					ctx.fill();
+					//ventanas
+					ctx.lineWidth = 2;
+					ctx.fillRect(450,250,100,50);
+					ctx.fillRect(750,250,100,50);
+					ctx.strokeRect(450,250,100,50);
+					ctx.strokeRect(750,250,100,50);
+
+				}
+		}
+
+		</script>
+	</body>
+</html>
