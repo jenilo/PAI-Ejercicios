@@ -1,0 +1,82 @@
+<html>
+	<head>
+		<title>Eventos teclado</title>
+	</head>
+	<body style="background-color: gray;">
+		<div style="width: 1000px; margin: 0 auto;">
+			<canvas id="canvas" width="1000" height="500" style="background-color: white;"></canvas>
+		</div>
+		<script type="text/javascript">
+			var canvas = null,ctx = null;
+			var x = 0, y = 0;
+			var tecla = null, vel = 5;
+
+			window.requestAnimationFrame = (function(){
+				return window.requestAnimationFrame || 
+				window.mozRequestAnimationFrame || 
+				window.webkitRequestAnimationFrame || 
+				function (callback){
+					window.setTimeout(callback,17);
+				}
+			}());
+			function init(){
+				canvas = document.getElementById("canvas");
+				ctx = canvas.getContext('2d');
+				run();
+			}
+			function run(){
+				window.requestAnimationFrame(run);
+				actualizar();
+				pintar(ctx);
+			}
+			function pintar(ctx){
+				ctx.fillStyle = "white";
+				ctx.fillRect(0,0,canvas.width,canvas.height);
+
+				ctx.fillStyle = "blue";
+				ctx.fillRect(x,y,10,10);
+			}
+			function actualizar(){
+				//izq
+				if(tecla == 65 || tecla == 37){
+					x -= vel;
+					if(x < 0)
+						x = canvas.width;
+					console.log("izq");
+				}
+				//der
+				else if(tecla == 68 || tecla == 39){
+					x += vel;
+					if(x > canvas.width)
+						x = -10;
+					console.log("der");
+				}
+				//abajo
+				else if(tecla == 83 || tecla == 40){
+					y += vel;
+					if(y > canvas.height)
+						y = -10;
+					console.log("ab");
+				}
+				//arriba
+				else if(tecla == 87 || tecla == 38){
+					y -= vel;
+					if(y < 0)
+						y = canvas.height;
+					console.log("arr");
+				}
+
+			}
+			window.addEventListener('load',init,false);
+			document.addEventListener("keydown",function(evt){
+				if(evt.keyCode == 65 || evt.keyCode == 37 || evt.keyCode == 68 || evt.keyCode == 39 ||
+					evt.keyCode == 83 || evt.keyCode == 40 || evt.keyCode == 87 || evt.keyCode == 38){
+					tecla = evt.keyCode;
+				}
+					
+			});
+
+
+		</script>
+	</body>
+</html>
