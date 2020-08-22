@@ -1,0 +1,115 @@
+<html>
+	<head>
+		<title>Eventos teclado</title>
+	</head>
+	<body style="background-color: gray;">
+		<div style="width: 1000px; margin: 0 auto;">
+			<canvas id="canvas" width="1000" height="500" style="background-color: white;"></canvas>
+		</div>
+		<script type="text/javascript">
+			var canvas = null,ctx = null;
+			var x = 0, y = 0;
+			var tecla = null, vel = 2;
+			var jugador = null, comida = null;
+			var puntaje = 0;
+			var puntajeLeyenda = "";
+			var puntosxComida = 100;
+
+			window.requestAnimationFrame = (function(){
+				return window.requestAnimationFrame || 
+				window.mozRequestAnimationFrame || 
+				window.webkitRequestAnimationFrame || 
+				function (callback){
+					window.setTimeout(callback,17);
+				}
+			}());
+			function init(){
+				canvas = document.getElementById("canvas");
+				ctx = canvas.getContext('2d');
+
+				jugador = new Rectangulo(x,y,10,10);
+				comida = new Rectangulo(random(canvas.width),random(canvas.height),10,10);
+
+				run();
+			}
+			function run(){
+				window.requestAnimationFrame(run);
+				actualizar();
+				pintar(ctx);
+			}
+			function pintar(ctx){
+				ctx.fillStyle = "white";
+				ctx.fillRect(0,0,canvas.width,canvas.height);
+
+				ctx.fillStyle = "blue";
+				jugador.pintar(ctx);
+				ctx.fillStyle = "red";
+				comida.pintar(ctx);
+
+				ctx.font = "30px Arial";
+				ctx.fillStyle = "black";
+				puntajeLeyenda = "Puntos: " + puntaje;
+				//var ancho = ctx.measureText(puntajeLeyenda).width;
+				ctx.fillText(puntajeLeyenda,(canvas.width/2)-110,30);
+			}
+			function actualizar(){
+				//izq
+				if(tecla == 65 || tecla == 37){
+					jugador.x -= vel;
+					if(jugador.x < 0)
+						jugador.x = canvas.width;
+				}
+				//der
+				else if(tecla == 68 || tecla == 39){
+					jugador.x += vel;
+					if(jugador.x > canvas.width)
+						jugador.x = -10;
+				}
+				//abajo
+				else if(tecla == 83 || tecla == 40){
+					jugador.y += vel;
+					if(jugador.y > canvas.height)
+						jugador.y = -10;
+				}
+				//arriba
+				else if(tecla == 87 || tecla == 38){
+					jugador.y -= vel;
+					if(jugador.y < 0)
+						jugador.y = canvas.height;
+				}
+
+				if(jugador.interseccion(comida)){
+					puntaje += puntosxComida;
+					comida.x = random(canvas.width);
+					comida.y = random(canvas.height);
+				}
+
+			}
+			function random(m){
+				return Math.floor(Math.random()*m);
+			}
+			window.addEventListener('load',init,false);
+			document.addEventListener("keydown",function(evt){
+				if(evt.keyCode == 65 || evt.keyCode == 37 || evt.keyCode == 68 || evt.keyCode == 39 ||
+					evt.keyCode == 83 || evt.keyCode == 40 || evt.keyCode == 87 || evt.keyCode == 38){
+					tecla = evt.keyCode;
+				}
+			});
+
+			function Rectangulo(x,y,w,h){
+				this.x = x; this.y = y;
+				this.w = w; this.h = h;
+
+				this.pintar = function(ctx){
+					ctx.fillRect(this.x,this.y,this.w,this.h);
+				}
+				this.interseccion = function(rect){
+					if(this.x < rect.x + rect.w && this.x + this.w > rect.x &&
+						this.y < rect.y + rect.h && this.y + this.h > rect.y)
+						return true;
+				}
+			}
+
+		</script>
+	</body>
+</html>
